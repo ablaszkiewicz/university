@@ -3,7 +3,6 @@ package Entity;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -14,18 +13,18 @@ import java.util.List;
 @Entity
 @ToString
 @NoArgsConstructor
-public class Tower {
+public class Browar {
     @Id
     private String name;
 
-    private int height;
+    private long wartosc;
 
-    @OneToMany(mappedBy = "tower")
+    @OneToMany(mappedBy = "browar")
     @ToString.Exclude
-    private List<Mage> mages;
+    private List<Piwo> piwa;
 
-    public Tower(String name, int height) {
+    public Browar(String name, long wartosc) {
         this.name = name;
-        this.height = height;
+        this.wartosc = wartosc;
     }
 }

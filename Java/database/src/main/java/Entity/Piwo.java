@@ -3,7 +3,6 @@ package Entity;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -13,18 +12,19 @@ import javax.persistence.ManyToOne;
 @Entity
 @ToString
 @NoArgsConstructor
-public class Mage {
+
+public class Piwo {
     @Id
     private String name;
 
-    private int level;
+    private long cena;
 
     @ManyToOne
-    private Tower tower;
+    private Browar browar;
 
-    public Mage(String name, int level, Tower tower) {
+    public Piwo(String name, long cena, Browar browar) {
         this.name = name;
-        this.level = level;
-        this.tower = tower;
+        this.cena = cena;
+        this.browar = browar;
     }
 }
