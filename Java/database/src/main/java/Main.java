@@ -27,6 +27,6 @@ public class Main {
 
         System.out.println(piwoRepository.findAll());
         System.out.println(browarRepository.findAll());
-        System.out.println(browarRepository.getBrowarsWithBeerCheaperThan(5));
+        System.out.println(browarRepository.getBrowarsWithBeerCheaperThan(3));
     }
 }
