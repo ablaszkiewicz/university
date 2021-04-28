@@ -1,2 +1,2 @@
 # university
-All stuff related to the university.
+University related projects
