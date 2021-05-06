@@ -21,7 +21,7 @@ namespace file_explorer
             
             foreach (KeyValuePair<string, int> pair in elementsDeserialized)
             {
-                Console.WriteLine($"{pair.Key} {pair.Value}");
+                Console.WriteLine($"{pair.Key.Split('\\')[pair.Key.Split('\\').Length-1]} {pair.Value}");
             }
         }
     }
