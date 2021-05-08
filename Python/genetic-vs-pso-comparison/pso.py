@@ -84,11 +84,10 @@ for _ in range(iterations):
     calculate_new_velocities(points)
     move_points(points)
     distances_to_best_point.append(swarm_best_position.distance(helper.Point(0, 0)))
-    print(swarm_best_position.x, swarm_best_position.y)
 
 
 axs[1].plot(list(range(iterations)), distances_to_best_point)
-axs[1].set_title("Najlepszy dystans")
+axs[1].set_title("Najlepszy fitness (0 = najlepszy)")
 plt.show()
 
 

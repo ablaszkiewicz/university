@@ -17,7 +17,7 @@ class Point:
     def distance(self, other):
         delta_x = math.fabs(other.x - self.x)
         delta_y = math.fabs(other.y - self.y)
-        return math.fabs(delta_x ** 2 + delta_y ** 2)
+        return math.sqrt(delta_x ** 2 + delta_y ** 2)
 
     def move(self):
         self.x += self.x_velocity
