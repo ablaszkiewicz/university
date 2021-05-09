@@ -1,0 +1,3 @@
+Na wykresie widać, że występuje efekt Rungego - objawia się to tym, że mimo zwiększenia liczby próbek
+przybliżenie się pogarsza. Optymalną liczbą wydaje się być 32. Dodatkowo od k = 13 włącznie widać bardzo
+duże przeskoki w wartościach - wydaje się to źle zinterpolowane przez metodę wielomianową.

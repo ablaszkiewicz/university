@@ -1,0 +1,2 @@
+Po porównaniu wykresów mam pewność, że występuje efekt Rungego. Metoda trygonometryczna wydaje
+się minimalizować ten problem.
