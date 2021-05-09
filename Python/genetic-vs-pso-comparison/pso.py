@@ -3,7 +3,7 @@ import random
 import helper
 
 # Configuration
-iterations = 30
+iterations = 10
 
 # Population
 population_size = 10
