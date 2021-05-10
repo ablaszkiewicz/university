@@ -3,7 +3,7 @@ from random import *
 import helper
 
 # Configuration
-iterations = 10
+iterations = 40
 
 # Population
 population_size = 10
@@ -16,7 +16,6 @@ function_max = 100
 mutation_rate = 0.1
 elite_size = 2
 best_distances = []
-
 
 
 def random_in_range():
