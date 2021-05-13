@@ -7,15 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ToolBar VerticalAlignment="Top" >
-            <Menu DockPanel.Dock="Top">
+        <ToolBar HorizontalAlignment="Left" >
+            <Menu DockPanel.Dock="Left">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Open" Click="OpenClicked"/>
                     <MenuItem Header="_Exit" Click="ExitClicked"/>
+                    <MenuItem Header="_About" Click="AboutClicked"/>
                 </MenuItem>
             </Menu>
         </ToolBar>
-        <TreeView x:Name="TreeView" Margin="0,28,310,0"/>
+        <TreeView x:Name="TreeView" Margin="70,0,310,0"/>
         <StatusBar Margin="0,380,0,0">
             <TextBlock x:Name="StatusText"/>
         </StatusBar>

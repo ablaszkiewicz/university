@@ -47,6 +47,12 @@ namespace windows_forms
         {
             Close();
         }
+
+        private void AboutClicked(object sender, RoutedEventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
         
         private void CreateClicked(object sender, RoutedEventArgs e)
         {
