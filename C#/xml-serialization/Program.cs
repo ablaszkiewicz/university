@@ -75,7 +75,7 @@ namespace xml_serialization
             var countAverageXPath = "sum(//car/engine[@Model!=\"TDI\"]/HorsePower) div count(//car/engine[@Model!=\"TDI\"]/HorsePower)";
             Console.WriteLine($"Średnia: {(double)rootNode.XPathEvaluate(countAverageXPath)}");
 
-            var removeDuplicatesXPath = "//car[following-sibling::car/Model=Model]";
+            var removeDuplicatesXPath = "//car[not(following-sibling::car/Model=Model)]";
             IEnumerable<XElement> models = rootNode.XPathSelectElements(removeDuplicatesXPath);
 
             var fileName = "CarsCollectionNoDuplicates.xml";
