@@ -17,7 +17,7 @@ public class Consumer implements Runnable {
         while(!Thread.interrupted()) {
             try {
                 ResourceRequest resourceRequest = buyRequest();
-                warehouse.requestResource(resourceRequest);
+                warehouse.take(resourceRequest);
             } catch(InterruptedException e) {
                 System.out.println("Producer's thread got interrupted");
             }
@@ -25,11 +25,11 @@ public class Consumer implements Runnable {
     }
 
     private ResourceRequest buyRequest() {
-        waitForRandom();
+        waitForDemand();
         return formResourceRequest();
     }
 
-    private void waitForRandom() {
+    private void waitForDemand() {
         try {
             int waitTime = ThreadLocalRandom.current().nextInt(MIN_INTERVAL * 1000, MAX_INTERVAL * 1000);
             Thread.sleep(waitTime);

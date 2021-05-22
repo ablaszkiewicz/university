@@ -5,21 +5,22 @@ import java.util.Map;
 
 
 public class Warehouse {
-    private final int MAX_CAPACITY = 100;
+    private final int MAX_CAPACITY = 10;
     private final Map<ResourceType, Integer> resourcesAmount = new HashMap<ResourceType, Integer>();
 
     public Warehouse() {
         initializeResourcesAmount();
     }
 
-    public synchronized void requestResource(ResourceRequest request) throws InterruptedException {
+    public synchronized void take(ResourceRequest request) throws InterruptedException {
         while(!hasSufficientResources(request)) {
             wait();
         }
+        notifyAll();
         processSellRequest(request);
     }
 
-    public synchronized void deliverResource(ResourceRequest request) throws InterruptedException {
+    public synchronized void put(ResourceRequest request) throws InterruptedException {
         while(!hasSufficientCapacity(request)) {
             wait();
         }

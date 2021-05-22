@@ -17,7 +17,7 @@ class Producer implements Runnable{
         while(!Thread.interrupted()) {
             try {
                 ResourceRequest resourceRequest = produce();
-                warehouse.deliverResource(resourceRequest);
+                warehouse.put(resourceRequest);
             } catch(InterruptedException e) {
                 System.out.println("Producer's thread got interrupted");
             }
