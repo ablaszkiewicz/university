@@ -6,10 +6,12 @@ from imgaug.augmentables.bbs import BoundingBox, BoundingBoxesOnImage
 from random import *
 from PIL import Image as PIL_Image
 
+
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
 
 seq = iaugmenters.Sequential([
     iaugmenters.Sometimes(
@@ -26,6 +28,7 @@ seq = iaugmenters.Sequential([
         shear=(-8, 8)
     )
 ], random_order=True)
+
 
 class ImageAugmenter:
     def __init__(self, objects_paths, background_file_name, yolo_class_name):
@@ -183,14 +186,33 @@ class ImageAugmenter:
         }
 
         card_dictionary = {
-            "J_H": 0,
-            "Q_H": 1,
-            "K_H": 2,
-            "A_H": 3,
-            "J_S": 4,
-            "Q_S": 5,
-            "K_S": 6,
-            "A_S": 7,
+            "9_H": 0,
+            "10_H": 1,
+            "J_H": 2,
+            "Q_H": 3,
+            "K_H": 4,
+            "A_H": 5,
+
+            "9_S": 6,
+            "10_S": 7,
+            "J_S": 8,
+            "Q_S": 9,
+            "K_S": 10,
+            "A_S": 11,
+
+            "9_C": 12,
+            "10_C": 13,
+            "J_C": 14,
+            "Q_C": 15,
+            "K_C": 16,
+            "A_C": 17,
+
+            "9_D": 18,
+            "10_D": 19,
+            "J_D": 20,
+            "Q_D": 21,
+            "K_D": 22,
+            "A_D": 23,
         }
         return str(card_dictionary[class_name])
 

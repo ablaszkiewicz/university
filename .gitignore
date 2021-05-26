@@ -200,3 +200,8 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+Python/yolo-cards-detection/backgrounds
+Python/yolo-cards-detection-augmenter/backgrounds
+Python/yolo-cards-detection-augmenter/dataset_augmented
+Python/yolo-cards-detection-augmenter/dataset_original
+Python/yolo-cards-detection/backgrounds
