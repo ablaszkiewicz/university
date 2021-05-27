@@ -1,0 +1,73 @@
+﻿<Window x:Class="rsa_encryption.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:rsa_encryption"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="18" HorizontalAlignment="Center">
+            Dostępne klucze
+        </TextBlock>
+        <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" SelectionMode="Single" Margin="5,30,5,5" Name="KeysListBox"/>
+            <Button Grid.Row="3" Grid.Column="0" Margin="5" Name="GenerateKeysButton" Click="GenerateKeysButton_OnClick">
+            Wygeneruj klucze
+        </Button>
+        <TabControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="5">
+            <TabItem Header="Asymetryczne">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gray" Margin="5" Name="AsymetricDropPanel" AllowDrop="True" Drop="AsymetricDropPanel_OnDrop"/>
+                    <Button Grid.Row="1" Grid.Column="0" Margin="5" Name="AsymetricEncrypt" Click="AsymetricEncrypt_OnClick">
+                        Szyfruj
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="1" Margin="5" Name="AsymetricDecrypt" Click="AsymetricDecrypt_OnClick">
+                        Odszyfruj
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Symetryczne">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="0" Background="Gray" Margin="5" AllowDrop="True"/>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Background="Gray" Margin="5" AllowDrop="True"/>
+                    <Button Grid.Row="1" Grid.Column="0" Margin="5" Name="SymetricEncrypt" Click="SymetricEncrypt_OnClick">
+                        Szyfruj
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="1" Margin="5" Name="SymetricDecrypt" Click="SymetricDecrypt_OnClick">
+                        Odszyfruj
+                    </Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
