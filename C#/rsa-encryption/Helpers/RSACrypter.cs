@@ -20,7 +20,7 @@ namespace rsa_encryption
         
         private String filePath;
         
-        public static void Encrypt()
+        public void Encrypt()
         {
             string keyPath = KeyStorage.Instance().GetKeyPath();
             Console.WriteLine($"Encrypting the file using {keyPath} key");
@@ -28,16 +28,17 @@ namespace rsa_encryption
             using (var rsa = new RSACryptoServiceProvider())
             {
                 rsa.FromXmlString(File.ReadAllText(keyPath));
-                //byte[] bytesToEncrypt = Encoding.UTF8.GetBytes(File.ReadAllText("to_encrypt.txt"));
-                byte[] bytesToEncrypt = File.ReadAllBytes("to_encrypt.txt");
+                byte[] bytesToEncrypt = File.ReadAllBytes(filePath);
                 byte[] encrypted = rsa.Encrypt(bytesToEncrypt, false);
-                File.WriteAllBytes("encrypted.txt", encrypted);
+
+                var pureFileName = Path.GetFileName(filePath).Split('.')[0];
+                File.WriteAllBytes($"{pureFileName}_ENCRYPTED.txt", encrypted);
             }
             
             Process.Start("explorer.exe", Directory.GetCurrentDirectory());
         }
         
-        public static void Decrypt()
+        public void Decrypt()
         {
             string keyPath = KeyStorage.Instance().GetKeyPath();
             Console.WriteLine($"Decrypting the file using {keyPath} key");
@@ -45,18 +46,18 @@ namespace rsa_encryption
             using (var rsa = new RSACryptoServiceProvider())
             {
                 rsa.FromXmlString(File.ReadAllText(keyPath));
-                byte[] bytesToDecrypt = File.ReadAllBytes("encrypted.txt");
+                byte[] bytesToDecrypt = File.ReadAllBytes(filePath);
                 byte[] decrypted = rsa.Decrypt(bytesToDecrypt, false);
-                //var decryptedString = BitConverter.ToString(decrypted).Replace("-", "");
                 var decryptedString = Encoding.UTF8.GetString(decrypted);
                 
-                File.WriteAllText("decrypted.txt", decryptedString);
+                var pureFileName = Path.GetFileName(filePath).Split('.')[0].Split('_')[0];
+                File.WriteAllText($"{pureFileName}_DECRYPTED.txt", decryptedString);
             }
             
             Process.Start("explorer.exe", Directory.GetCurrentDirectory());
         }
 
-        public void SetFilePath(string filePath)
+        public void SetFileBeingEcryptedPath(string filePath)
         {
             this.filePath = filePath;
             Console.WriteLine($"Updated RSACrypto file path to: {filePath}");

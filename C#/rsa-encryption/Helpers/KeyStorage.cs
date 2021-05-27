@@ -25,7 +25,7 @@ namespace rsa_encryption
         {
             List<String> keys = new List<string>();
             var directoryInfo = new DirectoryInfo(Directory.GetCurrentDirectory());
-            foreach (FileInfo file in directoryInfo.GetFiles("*.txt"))
+            foreach (FileInfo file in directoryInfo.GetFiles("*.key"))
             {
                 keys.Add(file.Name);
             }
@@ -34,9 +34,9 @@ namespace rsa_encryption
         }
         public static void SaveKeyToFile(string fileName, string text)
         {
-            using (StreamWriter writer = new StreamWriter(fileName + ".txt"))
+            using (StreamWriter writer = new StreamWriter(fileName + ".key"))
             {
-                Console.WriteLine($"Saving key to {fileName}.txt");
+                Console.WriteLine($"Saving key to {fileName}.key");
                 writer.Write(text);
             }
         }
@@ -44,8 +44,8 @@ namespace rsa_encryption
         public void ChooseKey(object sender, RoutedEventArgs e)
         {
             var item = (ListBoxItem) sender;
-            Console.WriteLine($"Chosen new key file: {item.Content}");
-            keyFile = item.Content.ToString();
+            Console.WriteLine($"Chosen new key file: {item.Tag}");
+            keyFile = item.Tag.ToString();
         }
 
         public string GetKeyPath()

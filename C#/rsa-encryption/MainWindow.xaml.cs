@@ -24,16 +24,32 @@ namespace rsa_encryption
         {
             InitializeComponent();
             RefreshAvailableKeys();
+            AsymetricEncryptButton.IsEnabled = false;
+            AsymetricDecryptButton.IsEnabled = false;
         }
 
         private void RefreshAvailableKeys()
         {
             KeysListBox.Items.Clear();
-            foreach (var key in KeyStorage.GetKeysInDirectory())
+            foreach (var keyFileName in KeyStorage.GetKeysInDirectory())
             {
                 var item = new ListBoxItem();
+                var displayedName = "";
+                var pureName= keyFileName.Split('.')[0].Split('_')[0];
+                var fileSufix= keyFileName.Split('.')[0].Split('_')[1];
+
+                displayedName += pureName;
+
+                if (fileSufix == "PRIVATE")
+                {
+                    displayedName = "🔒 " + displayedName;
+                }
+                else displayedName = "     " + displayedName;
+                
                 item.Selected += KeyStorage.Instance().ChooseKey;
-                item.Content = key;
+                item.Selected += ChangeButtonsState;
+                item.Content = displayedName;
+                item.Tag = keyFileName;
                 KeysListBox.Items.Add(item);
             }
         }
@@ -46,12 +62,12 @@ namespace rsa_encryption
 
         private void AsymetricEncrypt_OnClick(object sender, RoutedEventArgs e)
         {
-            RSACrypter.Encrypt();
+            RSACrypter.Instance().Encrypt();
         }
 
         private void AsymetricDecrypt_OnClick(object sender, RoutedEventArgs e)
         {
-            RSACrypter.Decrypt();
+            RSACrypter.Instance().Decrypt();
         }
 
         private void AsymetricDropPanel_OnDrop(object sender, DragEventArgs e)
@@ -59,7 +75,7 @@ namespace rsa_encryption
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[]) e.Data.GetData(DataFormats.FileDrop);
-                RSACrypter.Instance().SetFilePath(files[0]);
+                RSACrypter.Instance().SetFileBeingEcryptedPath(files[0]);
             }
         }
         
@@ -71,6 +87,38 @@ namespace rsa_encryption
         private void SymetricDecrypt_OnClick(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void ChangeButtonsState(object sender, RoutedEventArgs e)
+        {
+            var item = (ListBoxItem) sender;
+
+            try
+            {
+                var identifier = item.Tag.ToString().Split('.')[0].Split('_')[1];
+                if (identifier == "PRIVATE")
+                {
+                    AsymetricEncryptButton.IsEnabled = false;
+                    AsymetricDecryptButton.IsEnabled = true;
+                }
+                else if (identifier == "PUBLIC")
+                {
+                    AsymetricEncryptButton.IsEnabled = true;
+                    AsymetricDecryptButton.IsEnabled = false;
+                }
+                else
+                {
+                    AsymetricEncryptButton.IsEnabled = false;
+                    AsymetricDecryptButton.IsEnabled = false;
+                }
+            }
+            catch (Exception error)
+            {
+                AsymetricEncryptButton.IsEnabled = false;
+                AsymetricDecryptButton.IsEnabled = false;
+            }
+
+            
         }
     }
 }
