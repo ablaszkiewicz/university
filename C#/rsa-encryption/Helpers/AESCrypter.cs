@@ -31,7 +31,7 @@ namespace rsa_encryption
             cryptoServiceProvider.BlockSize = 128;
             cryptoServiceProvider.KeySize = 256;
             
-            string[] lines = File.ReadAllLines("aes-key.txt");
+            string[] lines = File.ReadAllLines(keyPath);
             byte[] iv = Convert.FromBase64String(lines[0]);
             byte[] key = Convert.FromBase64String(lines[1]);
             cryptoServiceProvider.IV = iv;
@@ -46,9 +46,9 @@ namespace rsa_encryption
                 transform.TransformFinalBlock(Encoding.UTF8.GetBytes(textToEncrypt), 0, textToEncrypt.Length);
 
             string encryptedText = Convert.ToBase64String(encryptedBytes);
-            File.WriteAllText($"{pureName}_AES-ENCRYPTED.txt", encryptedText);
+            File.WriteAllText($"{pureName}_ENCRYPTED.txt", encryptedText);
 
-            RSACrypter.Instance().Encrypt("aes-key.txt");
+            RSACrypter.Instance().Encrypt(keyPath);
         }
 
         public void Decrypt()
@@ -59,8 +59,9 @@ namespace rsa_encryption
             cryptoServiceProvider.BlockSize = 128;
             cryptoServiceProvider.KeySize = 256;
 
-            RSACrypter.Instance().Decrypt("aes-key_ENCRYPTED.txt");
-            string[] lines = File.ReadAllLines("aes-key_DECRYPTED.txt");
+            RSACrypter.Instance().Decrypt(keyPath);
+            var decryptedKeypath = Path.GetFileName(keyPath).Split(".")[0].Split("_")[0] + "_DECRYPTED.txt";
+            string[] lines = File.ReadAllLines(decryptedKeypath);
             byte[] iv = Convert.FromBase64String(lines[0]);
             byte[] key = Convert.FromBase64String(lines[1]);
             cryptoServiceProvider.IV = iv;
@@ -73,9 +74,8 @@ namespace rsa_encryption
             byte[] decryptedBytes = transform.TransformFinalBlock(encryptedBytes, 0, encryptedBytes.Length);
             string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
             
-            Console.WriteLine(decryptedText);
             string pureName = Path.GetFileName(filePath).Split("_")[0];
-            File.WriteAllText($"{pureName}_AES_DECRYPTED.txt", decryptedText);
+            File.WriteAllText($"{pureName}_DECRYPTED.txt", decryptedText);
         }
         
         public void SetFileBeingEcryptedPath(string filePath)

@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:rsa_encryption"
         mc:Ignorable="d"
-        Title="GenerateKeyWindow" Height="300" Width="200">
+        Title="Generator kluczy" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -14,14 +14,49 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            Tutaj się generuje klucze
-        </TextBlock>
-        <ComboBox Grid.Row="1" Margin="15" Name="AvailableSizeOptions"/>
-        <Label Grid.Row="2" Content="Nazwa klucza" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <TextBox Grid.Row="2" Margin="15" Height="20" VerticalAlignment="Bottom" Name="KeyName"/>
-        <Button Grid.Row="3" Margin="15" Name="GenerateKeysButton" Click="GenerateKeysButton_OnClick">
-            Generuj
-        </Button>
+        <TabControl Grid.RowSpan="4">
+            <TabItem Header="Asymetryczne">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        Tutaj się generuje
+                        klucze asymetryczne
+                    </TextBlock>
+                    <ComboBox Grid.Row="1" Margin="15" Name="AvailableSizeOptions"/>
+                    <Label Grid.Row="2" Content="Nazwa klucza" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <TextBox Grid.Row="2" Margin="15" Height="20" VerticalAlignment="Bottom" Name="KeyName"/>
+                    <Button Grid.Row="3" Margin="15" Name="GenerateKeysButton" Click="GenerateKeysButton_OnClick">
+                        Generuj
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Symetryczne">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        Tutaj się generuje
+                        klucze symetryczne
+                    </TextBlock>
+                    <Label Grid.Row="2" Content="Nazwa klucza" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <TextBox Grid.Row="2" Margin="15" Height="20" VerticalAlignment="Bottom" Name="SymetricKeyName"/>
+                    <Button Grid.Row="3" Margin="15" Name="GenerateSymetricKeyButton" Click="GenerateSymetricKeyButton_OnClick">
+                        Generuj
+                    </Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
     </Grid>
 </Window>
