@@ -76,17 +76,38 @@ namespace rsa_encryption
             {
                 string[] files = (string[]) e.Data.GetData(DataFormats.FileDrop);
                 RSACrypter.Instance().SetFileBeingEcryptedPath(files[0]);
+                AsymetricFileNameText.Text = Path.GetFileName(files[0]);
+            }
+        }
+        
+        private void SymetricDropPanelKey_OnDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[]) e.Data.GetData(DataFormats.FileDrop);
+                AESCrypter.Instance().SetKeyFilePath(files[0]);
+                SymetricKeyNameText.Text = Path.GetFileName(files[0]);
+            }
+        }
+        
+        private void SymetricDropPanelFile_OnDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[]) e.Data.GetData(DataFormats.FileDrop);
+                AESCrypter.Instance().SetFileBeingEcryptedPath(files[0]);
+                SymetricFileNameText.Text = Path.GetFileName(files[0]);
             }
         }
         
         private void SymetricEncrypt_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            AESCrypter.Instance().Encrypt();
         }
 
         private void SymetricDecrypt_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            AESCrypter.Instance().Decrypt();
         }
 
         private void ChangeButtonsState(object sender, RoutedEventArgs e)
@@ -117,8 +138,6 @@ namespace rsa_encryption
                 AsymetricEncryptButton.IsEnabled = false;
                 AsymetricDecryptButton.IsEnabled = false;
             }
-
-            
         }
     }
 }

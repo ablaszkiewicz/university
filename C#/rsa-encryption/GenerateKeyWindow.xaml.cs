@@ -27,7 +27,7 @@ namespace rsa_encryption
         private void GenerateKeysButton_OnClick(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Generating keys...");
-            var rsa = new RSACryptoServiceProvider((int)KeySize.SIZE_512);
+            var rsa = new RSACryptoServiceProvider((int)KeySize.SIZE_2048);
             var publicKey = rsa.ToXmlString(false);
             var privateKey = rsa.ToXmlString(true);
 

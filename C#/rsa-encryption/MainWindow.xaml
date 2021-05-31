@@ -39,6 +39,9 @@
                     </Grid.RowDefinitions>
                     
                     <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Background="LightGray" Margin="5" Name="AsymetricDropPanel" AllowDrop="True" Drop="AsymetricDropPanel_OnDrop"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4" Name="AsymetricFileNameText" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                        Upuść tutaj plik
+                    </TextBlock>
                     <Button Grid.Row="1" Grid.Column="2" Margin="5" Name="AsymetricEncryptButton" Click="AsymetricEncrypt_OnClick">
                         Szyfruj
                     </Button>
@@ -60,8 +63,14 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     
-                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="LightGray" Margin="5" AllowDrop="True"/>
-                    <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Background="LightGray" Margin="5" AllowDrop="True"/>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="LightGray" Margin="5" Name="SymetricDropPanelFile" AllowDrop="True" Drop="SymetricDropPanelFile_OnDrop"/>
+                    <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Background="LightGray" Margin="5" Name="SymetricDropPanelKey" AllowDrop="True" Drop="SymetricDropPanelKey_OnDrop"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="SymetricFileNameText" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                        Upuść tutaj plik
+                    </TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="SymetricKeyNameText" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                        Upuść tutaj klucz
+                    </TextBlock>
                     <Button Grid.Row="1" Grid.Column="2" Margin="5" Name="SymetricEncrypt" Click="SymetricEncrypt_OnClick">
                         Szyfruj
                     </Button>
