@@ -35,7 +35,8 @@ namespace rsa_encryption
                     byte[] encrypted = rsa.Encrypt(bytesToEncrypt, false);
 
                     var pureFileName = Path.GetFileName(filePath).Split('.')[0];
-                    File.WriteAllBytes($"{pureFileName}_ENCRYPTED.txt", encrypted);
+                    var extension = Path.GetFileName(filePath).Split('.')[1];
+                    File.WriteAllBytes($"{pureFileName}_ENCRYPTED.{extension}", encrypted);
                     
                     Process.Start("explorer.exe", Directory.GetCurrentDirectory());
                 }
@@ -60,7 +61,8 @@ namespace rsa_encryption
                     byte[] decrypted = rsa.Decrypt(bytesToDecrypt, false);
                     var decryptedString = Encoding.UTF8.GetString(decrypted);
                     var pureFileName = Path.GetFileName(filePath).Split('.')[0].Split('_')[0];
-                    File.WriteAllText($"{pureFileName}_DECRYPTED.txt", decryptedString);
+                    var extension = Path.GetFileName(filePath).Split('.')[1];
+                    File.WriteAllText($"{pureFileName}_DECRYPTED.{extension}", decryptedString);
                     Process.Start("explorer.exe", Directory.GetCurrentDirectory());
                 }
                 catch (Exception exception)

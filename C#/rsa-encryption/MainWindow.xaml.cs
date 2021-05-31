@@ -26,6 +26,8 @@ namespace rsa_encryption
             RefreshAvailableKeys();
             AsymetricEncryptButton.IsEnabled = false;
             AsymetricDecryptButton.IsEnabled = false;
+            SymetricEncryptButton.IsEnabled = false;
+            SymetricDecryptButton.IsEnabled = false;
         }
 
         private void RefreshAvailableKeys()
@@ -121,22 +123,34 @@ namespace rsa_encryption
                 {
                     AsymetricEncryptButton.IsEnabled = false;
                     AsymetricDecryptButton.IsEnabled = true;
+                    
+                    SymetricEncryptButton.IsEnabled = false;
+                    SymetricDecryptButton.IsEnabled = true;
                 }
                 else if (identifier == "PUBLIC")
                 {
                     AsymetricEncryptButton.IsEnabled = true;
                     AsymetricDecryptButton.IsEnabled = false;
+                    
+                    SymetricEncryptButton.IsEnabled = true;
+                    SymetricDecryptButton.IsEnabled = false;
                 }
                 else
                 {
                     AsymetricEncryptButton.IsEnabled = false;
                     AsymetricDecryptButton.IsEnabled = false;
+                    
+                    SymetricEncryptButton.IsEnabled = false;
+                    SymetricDecryptButton.IsEnabled = false;
                 }
             }
             catch (Exception error)
             {
                 AsymetricEncryptButton.IsEnabled = false;
                 AsymetricDecryptButton.IsEnabled = false;
+                
+                SymetricEncryptButton.IsEnabled = false;
+                SymetricDecryptButton.IsEnabled = false;
             }
         }
     }

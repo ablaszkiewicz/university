@@ -71,10 +71,10 @@
                     <TextBlock Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="SymetricKeyNameText" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
                         Upuść tutaj klucz
                     </TextBlock>
-                    <Button Grid.Row="1" Grid.Column="2" Margin="5" Name="SymetricEncrypt" Click="SymetricEncrypt_OnClick">
+                    <Button Grid.Row="1" Grid.Column="2" Margin="5" Name="SymetricEncryptButton" Click="SymetricEncrypt_OnClick">
                         Szyfruj
                     </Button>
-                    <Button Grid.Row="1" Grid.Column="3" Margin="5" Name="SymetricDecrypt" Click="SymetricDecrypt_OnClick">
+                    <Button Grid.Row="1" Grid.Column="3" Margin="5" Name="SymetricDecryptButton" Click="SymetricDecrypt_OnClick">
                         Odszyfruj
                     </Button>
                 </Grid>

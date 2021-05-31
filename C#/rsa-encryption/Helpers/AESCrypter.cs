@@ -39,6 +39,7 @@ namespace rsa_encryption
 
             string textToEncrypt = File.ReadAllText(filePath);
             string pureName = Path.GetFileName(filePath).Split(".")[0];
+            string extension = Path.GetFileName(filePath).Split(".")[1];
             Console.WriteLine(pureName);
             
             ICryptoTransform transform = cryptoServiceProvider.CreateEncryptor();
@@ -46,7 +47,7 @@ namespace rsa_encryption
                 transform.TransformFinalBlock(Encoding.UTF8.GetBytes(textToEncrypt), 0, textToEncrypt.Length);
 
             string encryptedText = Convert.ToBase64String(encryptedBytes);
-            File.WriteAllText($"{pureName}_ENCRYPTED.txt", encryptedText);
+            File.WriteAllText($"{pureName}_ENCRYPTED.{extension}", encryptedText);
 
             RSACrypter.Instance().Encrypt(keyPath);
         }
@@ -75,7 +76,8 @@ namespace rsa_encryption
             string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
             
             string pureName = Path.GetFileName(filePath).Split("_")[0];
-            File.WriteAllText($"{pureName}_DECRYPTED.txt", decryptedText);
+            string extension = Path.GetFileName(filePath).Split(".")[1];
+            File.WriteAllText($"{pureName}_DECRYPTED.{extension}", decryptedText);
         }
         
         public void SetFileBeingEcryptedPath(string filePath)
