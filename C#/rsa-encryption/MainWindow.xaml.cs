@@ -50,10 +50,17 @@ namespace rsa_encryption
                 
                 item.Selected += KeyStorage.Instance().ChooseKey;
                 item.Selected += ChangeButtonsState;
+                item.MouseDoubleClick += DisplayKeyInfo;
                 item.Content = displayedName;
                 item.Tag = keyFileName;
                 KeysListBox.Items.Add(item);
             }
+        }
+
+        private void DisplayKeyInfo(object sender, RoutedEventArgs e)
+        {
+            KeyInfo window = new KeyInfo();
+            window.ShowDialog();
         }
         
         private void GenerateKeysButton_OnClick(object sender, RoutedEventArgs e)

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace rsa_encryption
 {
@@ -19,7 +20,11 @@ namespace rsa_encryption
         {
             foreach (var type in Enum.GetValues(typeof(KeySize)))
             {
-                AvailableSizeOptions.Items.Add(type);
+                Console.WriteLine(type);
+                var item = new ComboBoxItem();
+                item.Content = type;
+                item.Tag = (int) type;
+                AvailableSizeOptions.Items.Add(item);
             }
 
             AvailableSizeOptions.SelectedIndex = 0;
@@ -28,7 +33,8 @@ namespace rsa_encryption
         private void GenerateKeysButton_OnClick(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Generating asymetric keys...");
-            var rsa = new RSACryptoServiceProvider((int)KeySize.SIZE_2048);
+            var selected = (ComboBoxItem)AvailableSizeOptions.SelectedItem;
+            var rsa = new RSACryptoServiceProvider((int)selected.Tag);
             var publicKey = rsa.ToXmlString(false);
             var privateKey = rsa.ToXmlString(true);
 

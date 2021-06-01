@@ -78,6 +78,8 @@ namespace rsa_encryption
             string pureName = Path.GetFileName(filePath).Split("_")[0];
             string extension = Path.GetFileName(filePath).Split(".")[1];
             File.WriteAllText($"{pureName}_DECRYPTED.{extension}", decryptedText);
+            
+            Console.WriteLine("done");
         }
         
         public void SetFileBeingEcryptedPath(string filePath)

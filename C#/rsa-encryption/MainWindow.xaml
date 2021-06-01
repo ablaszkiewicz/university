@@ -50,7 +50,7 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Symetryczne">
+            <TabItem Header="Hybrydowe">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

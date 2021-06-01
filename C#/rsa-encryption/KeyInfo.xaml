@@ -1,0 +1,30 @@
+﻿<Window x:Class="rsa_encryption.KeyInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:rsa_encryption"
+        mc:Ignorable="d"
+        Title="Informacje o kluczu" Height="250" Width="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="KeyNameText">
+            Tutaj nazwa klucza
+        </TextBlock>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="KeyCreationDateText">
+            Tutaj data utworzenia
+        </TextBlock>
+        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="KeySizeText">
+            Tutaj size klucza
+        </TextBlock>
+        <Button Grid.Row="3" Margin="15" Name="CopyButton" Click="CopyButton_OnClick">
+            Kopiuj do schowka
+        </Button>
+    </Grid>
+</Window>
