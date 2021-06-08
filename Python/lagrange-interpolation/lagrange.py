@@ -14,7 +14,6 @@ def find_interpolated_y(data, wanted_x):
                 p *= (wanted_x - x[j]) / (x[i] - x[j])
         yp += y[i]*p
 
-    # print('For x = ', wanted_x, 'Y =', yp)
     return yp
 
 def interpolate_data(original_data, defective_data):

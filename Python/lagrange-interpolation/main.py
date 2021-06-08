@@ -13,8 +13,7 @@ def initialize_data(file_path):
 def plot_data(original_data, interpolated_data, reference_points):
     fig, axs = plt.subplots()
 
-    plt.title("Lagrange interpolation")
-    plt.ylim(500, 800)
+    plt.title("Splines interpolation")
 
     plt.plot(original_data[:, 0], original_data[:, 1], label="Original data")
     plt.plot(interpolated_data[:, 0], interpolated_data[:, 1], label="Interpolated data")
@@ -41,6 +40,8 @@ def interpolate_splines(data, step):
     plot_data(data, interpolated_data, defective_data)
 
 
-original_data = initialize_data("data/uluru.csv")
-#interpolate_lagrange(original_data, 25)
-interpolate_splines(original_data, 40)
+original_data = initialize_data("data/MountEverest.csv")
+#interpolate_lagrange(original_data, 20)
+interpolate_splines(original_data, 10)
+interpolate_splines(original_data, 20)
+interpolate_splines(original_data, 30)

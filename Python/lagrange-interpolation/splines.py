@@ -47,8 +47,6 @@ def spline_coefficients(data):
     for i in range(n):
         A[i][4 * i] = float(1)
         b[i] = float(data[i][1])
-
-    for i in range(n):
         A[n + i][4 * i] = float(1)
         A[n + i][4 * i + 1] = h
         A[n + i][4 * i + 2] = h ** 2
@@ -61,8 +59,6 @@ def spline_coefficients(data):
         A[2 * n + i][4 * i + 3] = 3 * h ** 2
         A[2 * n + i][4 * i + 5] = (-1)
         b[2 * n + i] = float(0)
-
-    for i in range((n - 1)):
         A[2 * n + (n - 1) + i][4 * i + 2] = float(2)
         A[2 * n + (n - 1) + i][4 * i + 3] = 6 * h
         A[2 * n + (n - 1) + i][4 * i + 6] = -2
@@ -78,30 +74,28 @@ def spline_coefficients(data):
 
 
 def pivoting(A, b):
-
     N, n = np.shape(A)
     L = np.eye(n)
     P = np.eye(n)
     U = A
 
     for i in range(n-1):
-
-        best = np.absolute(U[i][0])
-        ind = 0
+        cur_best = np.absolute(U[i][0])
+        index = 0
 
         for j in range(i, n):
-            if np.absolute(U[j][i]) > best:
-                best = np.absolute(U[j][i])
-                ind = j
+            if np.absolute(U[j][i]) > cur_best:
+                cur_best = np.absolute(U[j][i])
+                index = j
 
         for k in range(i, n):
-            U[ind][k], U[i][k] = U[i][k],  U[ind][k]
+            U[index][k], U[i][k] = U[i][k],  U[index][k]
 
         for k in range(i):
-            L[ind][k], L[i][k] = L[i][k], L[ind][k]
+            L[index][k], L[i][k] = L[i][k], L[index][k]
 
         for k in range(n):
-            P[ind][k], P[i][k] = P[i][k], P[ind][k]
+            P[index][k], P[i][k] = P[i][k], P[index][k]
 
         for j in range(i+1, n):
             L[j][i] = U[j][i]/U[i][i]
